@@ -12,6 +12,7 @@ import Signout from "../pages/components/signout";
 import { useSpeechSynthesis } from "react-speech-kit";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Linkify from "react-linkify";
+import Image from "next/image";
 
 function Home() {
   const text = "I am Cod robot, I am here to assist you";
@@ -366,7 +367,7 @@ function Home() {
         <div className={styles.chatBotHeader}>
           <div className={styles.leftSide}>
             <div className={styles.logoContainer}>
-              <img
+              <Image
                 src="/codLogo.jpg"
                 width={100}
                 height={100}
