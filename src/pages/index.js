@@ -16,7 +16,7 @@ import Image from "next/image";
 
 function Home() {
   const text = "I am Cod robot, I am here to assist you";
-  const [showLetters, setShowLetters] = useState(0);
+  const [showLetters, setShowLetters] = useState(1);
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [contact, setContact] = useState(false);
