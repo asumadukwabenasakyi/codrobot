@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import styles from '../styles/Home.module.css';
 
 function Index() {
   return (
@@ -8,4 +9,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Index;
