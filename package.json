@@ -20,7 +20,6 @@
     "next": "13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-linkify": "^1.0.0-alpha",
-    "react-speech-kit": "^3.0.1"
+    "react-linkify": "^1.0.0-alpha"
   }
 }

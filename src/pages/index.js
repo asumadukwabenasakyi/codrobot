@@ -9,7 +9,6 @@ import { push, ref } from "firebase/database";
 import { getDatabase, get } from "firebase/database";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Signout from "../pages/components/signout";
-import { useSpeechSynthesis } from "react-speech-kit";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Linkify from "react-linkify";
 import Image from "next/image";
@@ -331,7 +330,7 @@ function Home() {
     setSuggestions([]);
   };
 
-  const { speak } = useSpeechSynthesis();
+  
   const handlePlayResponse = (text) => {
     console.log("Playing response:", text);
     speak({ text });
