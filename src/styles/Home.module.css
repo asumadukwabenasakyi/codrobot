@@ -1,229 +1,855 @@
-.main {
+.container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chatbotContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  width: 45%;
+  margin: 0 auto;
+  height: 90vh;
+  border: 1px solid #ddd;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
-.description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
-}
-
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.grid {
+.leftSide {
   display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  max-width: var(--max-width);
-  width: 100%;
+  grid-template-columns: 1fr 3fr;
 }
 
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+.chatBotHeader {
+  width: 45%;
+  height: 90px;
+  background-color: #101357;
+  border-radius: 10px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
 
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-}
-
-.center {
+.logoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  padding: 4rem 0;
+  margin-left: 30px;
 }
 
-.center::before {
-  background: var(--secondary-glow);
+.logoContainer .logoImg {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  width: 480px;
-  height: 360px;
-  margin-left: -400px;
 }
 
-.center::after {
-  background: var(--primary-glow);
-  width: 240px;
-  height: 180px;
-  z-index: -1;
+.titles {
+  flex-direction: column;
+  display: flex;
+  margin-left: 6px;
+  width: 400px;
 }
 
-.center::before,
-.center::after {
-  content: '';
-  left: 50%;
-  position: absolute;
-  filter: blur(45px);
-  transform: translateZ(0);
+.titles h1:nth-child(1) {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  color: #fff;
 }
 
-.logo {
+.titles h1:nth-child(2) {
+  font-size: 12px;
+  font-family: sans-serif;
+  color: #e5e5e5;
+  font-weight: 100;
+  margin-top: 5px;
+}
+
+
+.CloseIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  float: right;
+}
+
+.CloseIcon .icon {
+  color: #e5e5e5;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+.CloseIcon .icon:hover {
+  color: #101357;
+}
+
+/* Add these styles to your existing CSS file (Home.module.css) */
+
+/* Chat container */
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: -40%;
+  border-radius: 8px;
+}
+
+/* Chat messages */
+.theChats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 65vh;
+  margin: 20px auto;
+  overflow-y: scroll;
+}
+
+/* User question */
+.userQuestion {
+  background-color: #fff;
+  color: #101357;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  align-self: flex-end;
+  margin-right: 10px;
+  margin-top: 10px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 0px;
+  padding: 20px;
+  width: 260px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-break: break-all;
+  letter-spacing: 1px;
+}
+
+/* Styles for bot message */
+.botResponse {
+  background-color: #101357;
+  color: #ffff;
+  align-self: flex-start;
+  width: auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  font-size: 15px;
+  width: 260px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 0px;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  word-break: break-all;
+  letter-spacing: 1px;
+}
+
+
+/* Input form */
+.userInput {
+  margin-top: -0.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userInput input {
+  width: 400px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+.userInput input:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+
+.userInput button {
+  margin-left: 10px;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+
+
+
+/*==================STYLES FOR CONTACT DETAILS===============*/
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 30vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 55);
+  margin: 0 auto;
+  margin-top: -31%;
+  margin-left: 14%;
+  border-radius: 20px;
+  background-color: #101357;
+}
+
+.contactIcons {
+  flex-direction: column;
+  display: flex;
+  cursor: pointer;
+}
+
+.whatsAppIcon {
+  margin-top: 1px;
+  color: green;
+}
+
+.LinkedInIcon {
+  margin-top: 10px;
+  color: blue;
+}
+
+.emailIcon {
+  margin-top: 10px;
+  color: lightblue;
+}
+
+.callIcon {
+  margin-top: 10px;
+  color: maroon
+}
+
+.closeIcon {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkred;
+  padding: 2px;
+  color: #fff;
+  font-weight: 700;
+}
+
+
+
+/*============STYLES FOR THE USERS ANSWERING QUESTIONS=======*/
+.ansQuestionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  margin-top: -40%;
+  box-shadow: 0px 0px 0px 10000px rgba(0, 0, 0, 0.5);
+  width: 400px;
+  height: 38vh;
+  background-color: #ffff;
+  border-radius: 10px;
+}
+
+.closeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn h1 {
+  color: red;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.titleForAnsQues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.titleForAnsQues h1 {
+  font-size: 18px;
+  color: #101357;
+  text-transform: uppercase;
+}
+
+.questionForUsers {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionForUsers h1 {
+  font-size: 16px;
+  margin-left: 40px;
+}
+
+.answerQuestionField {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.answerQuestionField input {
+  width: 90%;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
+  color: #101357;
+}
+
+.submitQuestionBtn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitQuestionBtn button {
+  border: none;
+  background-color: #101357;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+/*===================SHOWING FEEDBACK POP UP ==============*/
+.feedbackPopup {
+  display: flex;
+  width: 20%;
+  height: 35vh;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #101357;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 0px 1000000px rgba(0, 0, 0, 0.7);
+  color: #fff;
+  margin-top: -26%;
   position: relative;
 }
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
 
-  .card:hover span {
-    transform: translateX(4px);
-  }
+.feedbackPopup h1 {
+  font-size: 15px;
+  margin-top: 30px;
 }
 
-@media (prefers-reduced-motion) {
-  .card:hover span {
-    transform: none;
-  }
+.feedbackIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .content {
-    padding: 4rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
-  }
-
-  .card {
-    padding: 1rem 2.5rem;
-  }
-
-  .card h2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .center {
-    padding: 8rem 0 6rem;
-  }
-
-  .center::before {
-    transform: none;
-    height: 300px;
-  }
-
-  .description {
-    font-size: 0.8rem;
-  }
-
-  .description a {
-    padding: 1rem;
-  }
-
-  .description p,
-  .description div {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-  }
-
-  .description p {
-    align-items: center;
-    inset: 0 0 auto;
-    padding: 2rem 1rem 1.4rem;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
-  }
-
-  .description div {
-    align-items: flex-end;
-    pointer-events: none;
-    inset: auto 0 0;
-    padding: 2rem;
-    height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
-    z-index: 1;
-  }
+.feedbackIcon h2 {
+  font-size: 15px;
+  color: red;
+  margin-top: -20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, .9);
+  padding: 5px;
+  cursor: pointer;
 }
 
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
-  }
+.feedbackIcon h2:hover {
+  background-color: #ffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
 
-  .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
+.feedbackIcon .img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 10px;
 }
 
-@keyframes rotate {
-  from {
+.feedbackIcon button {
+  margin-top: 30px;
+  padding: 10px;
+  width: 100px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feedbackIcon button:hover {
+  background-color: #101357;
+  color: #fff;
+}
+
+/*================*/
+
+
+/*=============STYLES FOR THE SUGGESTION ===================*/
+.suggestionContainer {
+  position: absolute;
+  margin: -13% 33%;
+
+}
+
+.suggestionContainer ul {
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.9);
+  margin: 0 auto;
+  width: 500px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.suggestionContainer ul li {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/*===================END OF THE STYLES FOR THE SUGGESTION=========*/
+
+
+/*======================STYLES FOR SIGN IN ======================*/
+.signInHeader {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.signInHeader h1 {
+  font-size: 15px;
+  color: #fff;
+}
+
+.signInForm form input {
+  width: 290px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+}
+
+.signInForm form input::placeholder {
+  padding-left: 10px;
+}
+
+.signInForm form button {
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.suggestions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e5e5e5;
+  margin: -12.8% auto;
+  width: 32%;
+  position: relative;
+  padding: 0;
+  border-radius: 10px;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+.suggestionItem {
+  margin-bottom: 10px; /* Add margin-bottom for spacing */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.suggestionItem:hover {
+  background-color: #101357;
+  color: #fff;
+  width: 100%;
+}
+.resetBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  font-size: 15px;
+}
+.error{
+  color: red;
+  display: flex;
+  margin-left: 10px;
+}
+.success{
+  color: green;
+  margin-left: 10px;
+}
+
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #101357;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border: 4px solid #fff;
+  border-left-color: #101357;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.please1{
+  font-size: 14px;
+  color: #fff;
+}
+
+@keyframes spin {
+  to {
     transform: rotate(360deg);
   }
+}
+
+.loadingGoogle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.loading-spinnerGoogle {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border: 4px solid #fff;
+  border-left-color: #101357;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.pleaseGoogle{
+  font-size: 14px;
+  color: #101357;
+}
+
+@keyframes spin {
   to {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
+  }
+}
+/*play icon*/
+.playIcon{
+  color: yellow;
+}
+
+
+
+
+.disabled-button {
+  background-color: #e5e5e5;
+  color: red; 
+  cursor: not-allowed;
+  border: 1px solid #e5e5e5;
+  outline: none;
+}
+
+/*============SHOW WELCOME MESSAGE STYLES ==============*/
+.showWelcomeMessageContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #101357;
+  max-width: 350px;
+  min-height: 150px;
+  margin: -100% auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+.welcomeMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+.welcomeMessage h1{
+font-size: 15px;
+color: #fff;
+font-weight: 100;
+}
+
+.closeWelcomeMessage{
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #fff;
+}
+
+.closeWelcomeMessage button{
+  padding:7px;
+  color: #101357;
+  font-weight: 600;
+}
+
+
+/*RESPONSIVE FOR MOBILE PHONES ===================*/
+@media (max-width: 574px) {
+  .chatbotContainer {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .leftSide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chatBotHeader {
+    width: 100%;
+    height: auto;
+    background-color: #101357;
+    border-radius: 0;
+  }
+
+  .logoContainer {
+    margin-left: 15px;
+  }
+
+  .logoContainer .logoImg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .titles {
+    width: 200px;
+    margin-left: 4px;
+  }
+
+  .titles h1:nth-child(1) {
+    font-size: 13px;
+  }
+
+  .titles h1:nth-child(2) {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+.rightSide{
+  margin-right: -15px;
+}
+
+  .CloseIcon .icon {
+    font-size: 25px;
+  }
+
+  /*=========RESPONSIVE FOR USER QUESTIONS BOX============*/
+  .ansQuestionsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -65%;
+  }
+
+  .form {
+    width: 300px;
+    height: 34vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+  .closeBtn h1 {
+    font-size: 30px;
+    margin-top: -10px;
+  }
+
+  .titleForAnsQues {
+    margin: 8px;
+  }
+
+  .titleForAnsQues h1 {
+    font-size: 13px;
+  }
+
+  .questionForUsers {
+    margin: 0;
+  }
+
+  .questionForUsers h1 {
+    font-size: 14px;
+    margin-left: 0;
+  }
+
+  .answerQuestionField {
+    margin-top: 10px;
+  }
+
+  .answerQuestionField input {
+    width: 90%;
+    border: 1px solid black;
+  }
+
+  .submitQuestionBtn {
+    margin-top: 10px;
+  }
+
+  /*================END OF USER QUESTIONS ANSWER ============*/
+
+
+
+
+
+  /*===============CONTACT THE DEVELOPER STYLES ==============*/
+  .contactContainer {
+    position: relative;
+    margin: -70% auto;
+    margin-left: auto;
+    width: 220px;
+    height: 33vh;
+  }
+
+  .whatsAppIcon {
+    margin-top: 0;
+  }
+
+  /*==============STYLES FOR FEEDBACK BOX===============*/
+  .feedbackPopup {
+    width: 300px;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -70% auto;
+  }
+
+  .feedbackPopup h1 {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .feedbackIcon button {
+    margin-top: 20px
+  }
+
+  /*END*/
+
+  /*================STYLES FOR THE CHATS ================*/
+  .chatContainer {
+    margin: 0;
+    margin-top: 80px;
+  }
+
+  .theChats {
+    height: 73vh;
+    margin: 0;
+  }
+
+  .userInput {
+    margin: 0;
+    margin-top: -4;
+  }
+
+  .userInput input {
+    margin-top: 2.3%;
+    width: 250px;
+    border: 2px solid black;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+
+  .userInput button {
+    width: 60px;
+    border: 2px solid black;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+
+  .userQuestion {
+    padding: 10px;
+    width: 180px;
+    font-size: 13px;
+  }
+
+  .botResponse {
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  /*=================SIGN UP AND SIGN IN==========*/
+  .signinorsignoutcontainer h2 {
+    color: #e5e5e5;
+    font-size: 13px;
+  }
+  .signInForm h1{
+    font-size: 13px;
+  }
+  
+  .signInForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signInForm form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+  /*SUGGESTIONS ==========================*/
+  .suggestions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #e5e5e5;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+    margin: -53% auto;
+    width: 90%;
+    position: relative;
+    border-radius: 10px;
+    max-height: 180px;
+    overflow-y: scroll;
+  }
+  
+  .suggestionItem {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 13px;
+  
+  }
+  
+  .suggestionItem:hover {
+    background-color: #101357;
+    color: #fff;
+    width: 100%;
+  }
+  /*==============SHOW WELCOME MESSAGE ==============*/
+  .showWelcomeMessageContainer{
+    max-width: 300px;
   }
 }
