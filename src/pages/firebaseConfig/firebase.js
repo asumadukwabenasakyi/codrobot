@@ -18,6 +18,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
-// Initialize other Firebase modules if needed
+import React from 'react'
+
+function firebase() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default firebase
 
 export { db, app, auth };
