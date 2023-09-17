@@ -9,7 +9,7 @@ function Index() {
         <link rel="icon" href="/codLogo.jpg" />
         <title>Welcome To Cod Robot</title>
       </Head>
-      <div>This is the home page of the web application</div>
+      <div>Hey There, Welcome to my application</div>
     </>
   );
 }
