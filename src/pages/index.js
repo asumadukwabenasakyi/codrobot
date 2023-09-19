@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 import CommentIcon from "@mui/icons-material/Comment";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -12,6 +12,8 @@ import Signout from "../pages/components/signout";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Linkify from "react-linkify";
 import Image from "next/image";
+import UserIcon from "@mui/icons-material/QuestionAnswer";
+import BotIcon from "@mui/icons-material/SmartToy";
 
 function Home() {
   const text = "I am Cod robot, I am here to assist you";
@@ -330,7 +332,6 @@ function Home() {
     setSuggestions([]);
   };
 
-  
   const handlePlayResponse = (text) => {
     console.log("Playing response:", text);
     speak({ text });
@@ -379,7 +380,10 @@ function Home() {
               </div>
             </div>
             <div className={styles.rightSide}>
-              <div className={styles.CloseIcon} onClick={() => setContact(true)}>
+              <div
+                className={styles.CloseIcon}
+                onClick={() => setContact(true)}
+              >
                 <CommentIcon className={styles.icon} />
               </div>
             </div>
@@ -394,19 +398,20 @@ function Home() {
               key={index}
               className={chat.isUser ? styles.userQuestion : styles.botResponse}
             >
-              <Linkify>
-                <p>{chat.question}</p>
-              </Linkify>
-
-              {!chat.isUser && (
-                <PlayCircleIcon
-                  className={styles.playIcon}
-                  onClick={() =>
-                    handlePlayResponse(
-                      `${chat.question}, I am C.O.D robot. On a scale of 1 to 10, how satisfied are you with our C.O.D robot?, I would be happy to provide feedback on whatsApp`
-                    )
-                  }
-                />
+              {chat.isUser ? (
+                <>
+                  <UserIcon className={styles.icon1} /> {/* User Icon */}
+                  <Linkify>
+                    <p>{chat.question}</p>
+                  </Linkify>
+                </>
+              ) : (
+                <>
+                  <BotIcon className={styles.icon2} /> {/* Bot Icon */}
+                  <Linkify>
+                    <p>{chat.question}</p>
+                  </Linkify>
+                </>
               )}
             </div>
           ))}
