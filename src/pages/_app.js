@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../styles/globals.css';
+import styles from '../styles/user.module.css'
 import SignUp from './components/signup'
 import SignIn from './components/signIn'
 import { auth } from '../pages/firebaseConfig/firebase';
@@ -28,9 +29,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       {showPleaseWait ? (
-        <div className='loading-spinner-container'>
-          <div className='loading-spinner'></div>
-          <h1 className='please'>Please wait...</h1>
+        <div className={styles.loadingSpinnerContainer}>
+          <div className={styles.stylesloadingSpinner}></div>
+          <h1 className={styles.please}>Please wait...</h1>
         </div>
       ) : (
         user ? <Component {...pageProps} /> : <SignUpOrSignIn />

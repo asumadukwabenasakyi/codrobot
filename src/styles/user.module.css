@@ -1,9 +1,4 @@
 
-* {
-   box-sizing: border-box;
-   padding: 0;
-   margin: 0;
- }
  
  .signinorsignoutcontainer{
    display: flex;
@@ -18,7 +13,7 @@
  
  /* Add this to your index.css */
  
- .loading-spinner-container {
+ .loadingSpinnerContainer {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -26,7 +21,7 @@
    flex-direction: column;
  }
  
- .loading-spinner {
+ .loadingSpinner {
    display: inline-block;
    width: 60px;
    height: 60px;

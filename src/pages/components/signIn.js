@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import styles from '../../styles/Home.module.css'
 
 function SignInOrSignUp() {
   const [email, setEmail] = useState("");
@@ -38,10 +39,10 @@ function SignInOrSignUp() {
 
   return (
     <div>
-      <div className="signInHeader">
+      <div className={styles.signInHeader}>
         <h1>Already have an account? Sign In</h1>
       </div>
-      <div className="signInForm">
+      <div className={styles.signInForm}>
         <form onSubmit={signIn}>
           <input
             type="email"
@@ -59,10 +60,10 @@ function SignInOrSignUp() {
           <button type="submit">Login</button>
         </form>
 
-        <button onClick={resetPassword} className="resetBtn">Reset Password</button>
-        {errorMessage && <p className="error">{`Type your email in the sign in form or the mail provided is not in our database`}</p>}
+        <button onClick={resetPassword} className={styles.resetBtn}>Reset Password</button>
+        {errorMessage && <p className={styles.error}>{`Type your email in the sign in form or the mail provided is not in our database`}</p>}
         {resetSuccessMessage && (
-          <p className="success">{resetSuccessMessage}</p>
+          <p className={styles.success}>{resetSuccessMessage}</p>
         )}
       </div>
     </div>

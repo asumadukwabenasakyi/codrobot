@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { auth } from '../firebaseConfig/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import styles from '../../styles/Home.module.css';
 
 function SignUp() {
 
@@ -19,10 +20,10 @@ function SignUp() {
    }
   return (
    <div>
-      <div className="signInHeader">
+      <div className={styles.signInHeader}>
         <h1>Do not have account, Sign Up</h1>
       </div>
-      <div className="signInForm">
+      <div className={styles.signInForm}>
         <form onSubmit={sigUp}>
           <input
             type="email"
