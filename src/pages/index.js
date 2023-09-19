@@ -400,14 +400,14 @@ function Home() {
             >
               {chat.isUser ? (
                 <>
-                  <UserIcon className={styles.icon1} /> {/* User Icon */}
+                  <UserIcon className={styles.icon1} />
                   <Linkify>
                     <p>{chat.question}</p>
                   </Linkify>
                 </>
               ) : (
                 <>
-                  <BotIcon className={styles.icon2} /> {/* Bot Icon */}
+                  <BotIcon className={styles.icon2} />
                   <Linkify>
                     <p>{chat.question}</p>
                   </Linkify>
