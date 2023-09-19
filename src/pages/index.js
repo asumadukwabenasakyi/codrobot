@@ -392,7 +392,7 @@ function Home() {
           {chatHistory.map((chat, index) => (
             <div
               key={index}
-              className={chat.isUser ? "userQuestion" : "botResponse"}
+              className={chat.isUser ? styles.userQuestion : styles.botResponse}
             >
               <Linkify>
                 <p>{chat.question}</p>
@@ -449,7 +449,7 @@ function Home() {
 
       {contact && (
         <div className={styles.contactContainer}>
-          <div className="contactIcons">
+          <div className={styles.contactIcons}>
             <a href="https://wa.me/233597063145">
               <div className="whatsAppIcon">
                 <WhatsAppIcon />
@@ -457,22 +457,22 @@ function Home() {
             </a>
 
             <a href="https://www.linkedin.com/in/aksakyi/">
-              <div className="LinkedInIcon">
+              <div className={styles.LinkedInIcon}>
                 <LinkedInIcon />
               </div>
             </a>
 
             <a href="mailto:kwabenasakyi450@gmail.com">
-              <div className="emailIcon">
+              <div className={styles.emailIcon}>
                 <EmailIcon />
               </div>
             </a>
 
-            <div className="callIcon">
+            <div className={styles.callIcon}>
               <Signout />
             </div>
 
-            <div className="closeIcon" onClick={() => setContact(false)}>
+            <div className={styles.closeIcon} onClick={() => setContact(false)}>
               <span>&times;</span>
             </div>
           </div>
@@ -480,25 +480,25 @@ function Home() {
       )}
 
       {showFeedback && (
-        <div className="feedbackPopup">
-          <div className="feedbackIcon">
+        <div className={styles.feedbackPopup}>
+          <div className={styles.feedbackIcon}>
             <h2 onClick={() => setShowFeedback(false)}>&times; close</h2>
             <h1>How was your experience with Cod Robot?</h1>
-            <FeedbackIcon className="img" />
+            <FeedbackIcon className={styles.img} />
             <button onClick={handleWhatsAppClick}>Click</button>
           </div>
         </div>
       )}
 
       {showWelcomeMessage && (
-        <div className="showWelcomeMessageContainer">
-          <div className="welcomeMessage">
+        <div className={styles.showWelcomeMessageContainer}>
+          <div className={styles.welcomeMessage}>
             <h1>
               Hello, I am Cod Robot, I am delighted to have you here. Do not
               hesitate to ask questions related to Kumasi Technical University
             </h1>
           </div>
-          <div className="closeWelcomeMessage">
+          <div className={styles.closeWelcomeMessage}>
             <button onClick={() => setShowWelcomeMessage(false)}>Close</button>
           </div>
         </div>
