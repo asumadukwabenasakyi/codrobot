@@ -27,7 +27,6 @@ function Home() {
   const [showRound, setShowRound] = useState(false);
   const [searchingGoogle, setSearchingGoogle] = useState(false);
 
-
   /**= =====================FUNCTION TO SHOW THE POP UP QUESTION=========== =*/
 
   /**= =================END FUNCTION TO SHOW THE POP UP QUESTION=========== =*/
@@ -366,48 +365,50 @@ function Home() {
 
       <div className={styles.chatContainer}>
         <div className={styles.theChats}>
-        {chatHistory.map((chat, index) => (
-  <div
-    key={index}
-    className={chat.isUser ? styles.userQuestion : styles.botResponse}
-  >
-    {chat.isUser ? (
-      <>
-        <UserIcon className={styles.icon1} />
-        <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
-          <a
-            href={decoratedHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={key}
-          >
-            {decoratedText}
-          </a>
-        )}>
-          <p>{chat.question}</p>
-        </Linkify>
-      </>
-    ) : (
-      <>
-        <BotIcon className={styles.icon2} />
-        <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
-          <a
-            href={decoratedHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={key}
-          >
-            {decoratedText}
-          </a>
-        )}>
-          <p>{chat.question}</p>
-        </Linkify>
-      </>
-    )}
-  </div>
-))}
-
-
+          {chatHistory.map((chat, index) => (
+            <div
+              key={index}
+              className={chat.isUser ? styles.userQuestion : styles.botResponse}
+            >
+              {chat.isUser ? (
+                <>
+                  <UserIcon className={styles.icon1} />
+                  <Linkify
+                    componentDecorator={(decoratedHref, decoratedText, key) => (
+                      <a
+                        href={decoratedHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={key}
+                      >
+                        {decoratedText}
+                      </a>
+                    )}
+                  >
+                    <p>{chat.question}</p>
+                  </Linkify>
+                </>
+              ) : (
+                <>
+                  <BotIcon className={styles.icon2} />
+                  <Linkify
+                    componentDecorator={(decoratedHref, decoratedText, key) => (
+                      <a
+                        href={decoratedHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={key}
+                      >
+                        {decoratedText}
+                      </a>
+                    )}
+                  >
+                    <p>{chat.question}</p>
+                  </Linkify>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -487,9 +488,7 @@ function Home() {
           </div>
         </div>
       )}
-    
     </div>
-   
   );
 }
 

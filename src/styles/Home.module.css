@@ -748,18 +748,18 @@ background-color: #fff;
 
   .userInput {
     margin: 0;
-    margin-top: -4;
+    margin-top: 8%;
   }
 
   .userInput input {
-    margin-top: 2.3%;
+    margin-top: 3.5%;
     width: 250px;
     border: 2px solid black;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   }
 
   .userInput button {
-    width: 60px;
+    width: 55px;
     border: 2px solid black;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   }
