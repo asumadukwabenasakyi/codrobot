@@ -488,7 +488,7 @@
   background-color: #101357;
 }
 
-.loading-spinner {
+.loadingSpinner {
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -517,7 +517,7 @@
   background-color: #fff;
 }
 
-.loading-spinnerGoogle {
+.loadingSpinnerGoogle {
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -544,7 +544,7 @@
 
 
 
-.disabled-button {
+.disabledButton {
   background-color: #e5e5e5;
   color: red; 
   cursor: not-allowed;

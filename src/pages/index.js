@@ -9,25 +9,24 @@ import { push, ref } from "firebase/database";
 import { getDatabase, get } from "firebase/database";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Signout from "../pages/components/signout";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Linkify from "react-linkify";
 import Image from "next/image";
 import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
 
 function Home() {
-  const text = "I am Cod robot, I am here to assist you";
+  const text = `I am Cod robot, I'm here to assist you`;
   const [showLetters, setShowLetters] = useState(1);
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [contact, setContact] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
-  const [suggestions, setSuggestions] = useState([]);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
   const [fetchedData, setFetchedData] = useState(null);
   const [showRound, setShowRound] = useState(false);
   const [searchingGoogle, setSearchingGoogle] = useState(false);
+
 
   /**= =====================FUNCTION TO SHOW THE POP UP QUESTION=========== =*/
 
@@ -80,7 +79,6 @@ function Home() {
       { question: userInput, isUser: true },
     ]);
     setUserInput("");
-    updateSuggestions("");
     setQuestionCount((prevCount) => prevCount + 1);
 
     setTimeout(() => {
@@ -312,31 +310,6 @@ function Home() {
 
   /**===================END OF THE FUNCTION THAT HELPS IN GENERATING RESPONSE */
 
-  const updateSuggestions = (input) => {
-    if (input.trim().length === 0) {
-      setSuggestions([]);
-      return;
-    }
-    if (fetchedData) {
-      const normalizedInput = input.toLowerCase();
-      const matchedQuestions = fetchedData.filter((data) =>
-        data.question.toLowerCase().includes(normalizedInput)
-      );
-      const matchedSuggestions = matchedQuestions.map((data) => data.question);
-      setSuggestions(matchedSuggestions);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setUserInput(suggestion);
-    setSuggestions([]);
-  };
-
-  const handlePlayResponse = (text) => {
-    console.log("Playing response:", text);
-    speak({ text });
-  };
-
   useEffect(() => {
     setShowRound(true);
     const timer = setTimeout(() => {
@@ -393,28 +366,48 @@ function Home() {
 
       <div className={styles.chatContainer}>
         <div className={styles.theChats}>
-          {chatHistory.map((chat, index) => (
-            <div
-              key={index}
-              className={chat.isUser ? styles.userQuestion : styles.botResponse}
-            >
-              {chat.isUser ? (
-                <>
-                  <UserIcon className={styles.icon1} />
-                  <Linkify>
-                    <p>{chat.question}</p>
-                  </Linkify>
-                </>
-              ) : (
-                <>
-                  <BotIcon className={styles.icon2} />
-                  <Linkify>
-                    <p>{chat.question}</p>
-                  </Linkify>
-                </>
-              )}
-            </div>
-          ))}
+        {chatHistory.map((chat, index) => (
+  <div
+    key={index}
+    className={chat.isUser ? styles.userQuestion : styles.botResponse}
+  >
+    {chat.isUser ? (
+      <>
+        <UserIcon className={styles.icon1} />
+        <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+          <a
+            href={decoratedHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={key}
+          >
+            {decoratedText}
+          </a>
+        )}>
+          <p>{chat.question}</p>
+        </Linkify>
+      </>
+    ) : (
+      <>
+        <BotIcon className={styles.icon2} />
+        <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+          <a
+            href={decoratedHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={key}
+          >
+            {decoratedText}
+          </a>
+        )}>
+          <p>{chat.question}</p>
+        </Linkify>
+      </>
+    )}
+  </div>
+))}
+
+
         </div>
       </div>
 
@@ -426,31 +419,17 @@ function Home() {
             value={userInput}
             onChange={(e) => {
               setUserInput(e.target.value);
-              updateSuggestions(e.target.value);
             }}
           />
           <button
             type="submit"
             disabled={userInput.trim().length < 5}
-            className={userInput.trim().length < 5 ? "disabled-button" : ""}
+            className={userInput.trim().length < 5 ? styles.disabledButton : ""}
           >
             ASK
           </button>
         </form>
       </div>
-
-      {/* <div className="suggestions">
-        {suggestions.length > 0 &&
-          suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className="suggestionItem"
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {`${index + 1}. ${suggestion}`}
-            </div>
-          ))}
-      </div> */}
 
       {contact && (
         <div className={styles.contactContainer}>
@@ -508,7 +487,9 @@ function Home() {
           </div>
         </div>
       )}
+    
     </div>
+   
   );
 }
 
