@@ -451,7 +451,7 @@ function Home() {
               </div>
             </a>
 
-            <a href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP/android/app-release.apk" download>
+            <a href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP" download>
               <div className={styles.emailIcon}>
                 <DownloadIcon /> APP
               </div>
