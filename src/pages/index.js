@@ -13,7 +13,8 @@ import Linkify from "react-linkify";
 import Image from "next/image";
 import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
+import * as stringSimilarity from "string-similarity";
 
 function Home() {
   const text = `I am Cod robot, I'm here to assist you`;
@@ -29,8 +30,6 @@ function Home() {
   const [searchingGoogle, setSearchingGoogle] = useState(false);
 
   /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
-
-
 
   /**= =================END=========== =*/
 
@@ -111,6 +110,7 @@ function Home() {
   /**===============END OF THE FUNCTION THAT HANDLES THE SUBMISSION ========= */
 
   /**===========FUNCTIONS THAT HELPS IN GENERATION OF THE BOT RESPONSES===== */
+
   const getBotResponse = async (question) => {
     try {
       if (fetchedData) {
@@ -186,7 +186,8 @@ function Home() {
             "too",
             "via",
             "off",
-
+            "could",
+            "you",
             "all",
             "any",
             "top",
@@ -205,32 +206,33 @@ function Home() {
 
         // Normalize the user input and fetched data questions
         const normalizedUserInput = normalizeWords(question.toLowerCase());
-        const normalizedFetchedQuestions = fetchedData.map((data) =>
-          normalizeWords(data.question.toLowerCase())
-        );
 
-        // Find all matched responses
-        const matchedResponses = fetchedData.reduce((matched, data, index) => {
-          const matchingWords = normalizedUserInput
-            .split(" ")
-            .filter((word) => normalizedFetchedQuestions[index].includes(word));
-          if (matchingWords.length >= 2) {
-            matched.push({
-              response: data.response,
-              matchingWords: matchingWords.length,
-            });
-          }
-          return matched;
-        }, []);
+        // Calculate similarity scores
+        const similarityScores = fetchedData.map((data) => {
+          const normalizedFetchedQuestion = normalizeWords(
+            data.question.toLowerCase()
+          );
+          return {
+            response: data.response,
+            question: data.question,
+            similarity: stringSimilarity.compareTwoStrings(
+              normalizedUserInput,
+              normalizedFetchedQuestion
+            ),
+          };
+        });
 
-        // Sort the matched responses in descending order based on the number of matching words
-        matchedResponses.sort((a, b) => b.matchingWords - a.matchingWords);
+        // Sort by similarity scores in descending order
+        similarityScores.sort((a, b) => b.similarity - a.similarity);
 
-        // If there is a matched response, use it as the bot's response
-        if (matchedResponses.length > 0) {
+        // If there is a matched response abo2ve a certain threshold, use it as the bot's response
+        const bestMatch = similarityScores[0];
+        if (bestMatch.similarity > 0.2) {
+          // Adjust the threshold as needed
+          const myResponse = bestMatch.response;
           setChatHistory((prevChatHistory) => [
             ...prevChatHistory,
-            { question: matchedResponses[0].response, isUser: false },
+            { question: myResponse, isUser: false },
           ]);
           return; // Exit the function early if a matched response is found
         } else {
@@ -340,7 +342,6 @@ function Home() {
 
       <div className={styles.chatbotContainer}>
         <div className={styles.chatBotHeader}>
-
           <div className={styles.leftSide}>
             <div className={styles.logoContainer}>
               <Image
@@ -451,7 +452,10 @@ function Home() {
               </div>
             </a>
 
-            <a href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP" download>
+            <a
+              href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP"
+              download
+            >
               <div className={styles.emailIcon}>
                 <DownloadIcon /> APP
               </div>
