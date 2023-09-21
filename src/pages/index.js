@@ -13,6 +13,7 @@ import Linkify from "react-linkify";
 import Image from "next/image";
 import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
+import DownloadIcon from '@mui/icons-material/Download';
 
 function Home() {
   const text = `I am Cod robot, I'm here to assist you`;
@@ -27,9 +28,11 @@ function Home() {
   const [showRound, setShowRound] = useState(false);
   const [searchingGoogle, setSearchingGoogle] = useState(false);
 
-  /**= =====================FUNCTION TO SHOW THE POP UP QUESTION=========== =*/
+  /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
 
-  /**= =================END FUNCTION TO SHOW THE POP UP QUESTION=========== =*/
+
+
+  /**= =================END=========== =*/
 
   /*============FETCHING THE DATA(QUESTIONS AND RESPONSES) FROM THE DB==== */
   useEffect(() => {
@@ -337,6 +340,7 @@ function Home() {
 
       <div className={styles.chatbotContainer}>
         <div className={styles.chatBotHeader}>
+
           <div className={styles.leftSide}>
             <div className={styles.logoContainer}>
               <Image
@@ -447,9 +451,9 @@ function Home() {
               </div>
             </a>
 
-            <a href="mailto:kwabenasakyi450@gmail.com">
+            <a href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP/android/app-release.apk" download>
               <div className={styles.emailIcon}>
-                <EmailIcon />
+                <DownloadIcon /> APP
               </div>
             </a>
 

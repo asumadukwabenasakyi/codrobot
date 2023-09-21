@@ -713,7 +713,13 @@ background-color: #fff;
   .whatsAppIcon {
     margin-top: 0;
   }
-
+.emailIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+}
   /*==============STYLES FOR FEEDBACK BOX===============*/
   .feedbackPopup {
     width: 300px;
