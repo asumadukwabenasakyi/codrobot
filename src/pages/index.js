@@ -12,6 +12,7 @@ import Image from "next/image";
 import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
 import DownloadIcon from "@mui/icons-material/Download";
+import { resolve } from "styled-jsx/css";
 
 require("dotenv").config();
 
@@ -248,25 +249,25 @@ function Home() {
 
         // Sort the matched responses in descending order based on the number of matching words
         matchedResponses.sort((a, b) => b.matchingWords - a.matchingWords);
+
+        // If there is a matched response, use it as the bot's response
         if (matchedResponses.length > 0) {
           const botResponse = matchedResponses[0].response;
-          const lastUserQuestionIndex = chatHistory.length - 1;
-    
-          for (let i = 0; i < botResponse.length; i++) {
+          for (let i = 0; i < botResponse; i++) {
             await new Promise((resolve) => setTimeout(resolve, 50));
-    
-            setChatHistory((prevChatHistory) => {
-              const updatedChatHistory = [...prevChatHistory];
-              updatedChatHistory[lastUserQuestionIndex] = {
-                ...updatedChatHistory[lastUserQuestionIndex],
+
+            setChatHistory((prevChatHistory) => [
+              ...prevChatHistory,
+              {
                 question: botResponse.slice(0, i + 1),
-              };
-              return updatedChatHistory;
-            });
+                isUser: false,
+              },
+            ]);
           }
           return; // Exit the function early if a matched response is found
         } else {
           setSearchingGoogle(true);
+
           setTimeout(() => {
             setSearchingGoogle(false);
           }, 2000);
