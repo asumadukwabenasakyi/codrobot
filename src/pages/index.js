@@ -378,6 +378,30 @@ const handleBotResponse = (response) => {
     }
   };
 
+  useEffect(() => {
+    // Check if the bot is typing and there are bot responses to show
+    if (botIsTyping && chatHistory.length > 0) {
+      // Get the current bot response
+      const currentResponse = chatHistory[currentBotResponseIndex].question;
+  
+      // Start showing letters gradually
+      const interval = setInterval(() => {
+        setShowBotResponseLetters((prev) => (prev + 1) % currentResponse.length);
+      }, 100);
+  
+      // After some time, stop typing and move to the next response
+      setTimeout(() => {
+        clearInterval(interval);
+        setBotIsTyping(false);
+  
+        // Move to the next response or reset if all responses are shown
+        setCurrentBotResponseIndex(
+          (prev) => (prev + 1) % chatHistory.length
+        );
+      }, 2000); // Adjust the duration as needed
+    }
+  }, [botIsTyping, chatHistory, currentBotResponseIndex]);
+  
   /**===================END OF THE FUNCTION THAT HELPS IN GENERATING RESPONSE */
 
   useEffect(() => {
