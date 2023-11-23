@@ -29,6 +29,38 @@ function Home() {
   const [searchingGoogle, setSearchingGoogle] = useState(false);
   const [questionDatabase, setQuestionDatabase] = useState("");
   const [responseDatabase, setResponseDatabase] = useState("");
+  const [showBotResponseLetters, setShowBotResponseLetters] = useState(0);
+
+// Add a new state to keep track  bot response being displayed
+const [currentBotResponseIndex, setCurrentBotResponseIndex] = useState(0);
+
+// Add a new state to keep track of whether the bot is currently typing
+const [botIsTyping, setBotIsTyping] = useState(false);
+
+const handleBotResponse = (response) => {
+  setBotIsTyping(true);
+
+  // Start showing letters gradually
+  const interval = setInterval(() => {
+    setShowBotResponseLetters((prev) => (prev + 1) % response.length);
+  }, 100);
+
+  // After some time, stop typing and move to the next response
+  setTimeout(() => {
+    clearInterval(interval);
+    setBotIsTyping(false);
+
+    // Move to the next response or reset if all responses are shown
+    setCurrentBotResponseIndex((prev) => (prev + 1) % chatHistory.length);
+  }, 2000); // Adjust the duration as needed
+
+  // Add the bot response to chatHistory
+  setChatHistory((prevChatHistory) => [
+    ...prevChatHistory,
+    { question: response, isUser: false },
+  ]);
+};
+
 
   /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
 
@@ -263,16 +295,14 @@ function Home() {
 
         // If there is a matched response, use it as the bot's response
         if (matchedResponses.length > 0) {
-          setChatHistory((prevChatHistory) => [
-            ...prevChatHistory,
-            { question: matchedResponses[0].response, isUser: false },
-          ]);
+          handleBotResponse(matchedResponses[0].response);
           return; // Exit the function early if a matched response is found
         } else {
           setSearchingGoogle(true);
 
           setTimeout(() => {
             setSearchingGoogle(false);
+            handleBotResponse("I'm sorry, I couldn't find an answer.")
           }, 2000);
         }
       }
@@ -359,6 +389,10 @@ function Home() {
       clearTimeout(timer);
     };
   }, []);
+
+
+
+
 
   return (
     <div className={styles.container}>
