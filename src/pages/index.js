@@ -13,7 +13,7 @@ import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
 import DownloadIcon from "@mui/icons-material/Download";
 
-require('dotenv').config();
+require("dotenv").config();
 
 function Home() {
   const text = `I am Cod robot, I'm here to assist you`;
@@ -29,7 +29,6 @@ function Home() {
   const [searchingGoogle, setSearchingGoogle] = useState(false);
   const [questionDatabase, setQuestionDatabase] = useState("");
   const [responseDatabase, setResponseDatabase] = useState("");
-  
 
   /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
 
@@ -86,10 +85,6 @@ function Home() {
   });
   /**=============END OF FETCHING DATA FROM DB================== */
 
-
-
-
-
   /**==============FUNCTION FOR THE TYPING EFFECT AT THE HEADER======= */
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,9 +93,6 @@ function Home() {
     return () => clearInterval(interval);
   }, [text]);
   /**=============END OF THE TYPING EFFECT================ */
-
-
-
 
   /**============FUNCTIONS THAT HANDLES THE SUBMITION OF THE USER QUESTION */
   const handleUserSubmit = (e) => {
@@ -125,8 +117,6 @@ function Home() {
     }
   }, [questionCount]);
 
-
-
   const handleWhatsAppClick = () => {
     const phoneNumber = "+233597063145";
     const isMobileDevice =
@@ -142,9 +132,6 @@ function Home() {
   };
 
   /**===============END OF THE FUNCTION THAT HANDLES THE SUBMISSION ========= */
-
-
-
 
   /**===========FUNCTIONS THAT HELPS IN GENERATION OF THE BOT RESPONSES===== */
   const getBotResponse = async (question) => {
@@ -261,17 +248,21 @@ function Home() {
 
         // Sort the matched responses in descending order based on the number of matching words
         matchedResponses.sort((a, b) => b.matchingWords - a.matchingWords);
-
-        // If there is a matched response, use it as the bot's response
         if (matchedResponses.length > 0) {
-          // Instead of adding the response immediately, add each character with a delay
           const botResponse = matchedResponses[0].response;
+          const lastUserQuestionIndex = chatHistory.length - 1;
+    
           for (let i = 0; i < botResponse.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 50)); // Adjust the delay as needed
-            setChatHistory(prevChatHistory => [
-              ...prevChatHistory,
-              { question: botResponse.slice(0, i + 1), isUser: false },
-            ]);
+            await new Promise((resolve) => setTimeout(resolve, 50));
+    
+            setChatHistory((prevChatHistory) => {
+              const updatedChatHistory = [...prevChatHistory];
+              updatedChatHistory[lastUserQuestionIndex] = {
+                ...updatedChatHistory[lastUserQuestionIndex],
+                question: botResponse.slice(0, i + 1),
+              };
+              return updatedChatHistory;
+            });
           }
           return; // Exit the function early if a matched response is found
         } else {
@@ -281,10 +272,6 @@ function Home() {
           }, 2000);
         }
       }
-  
-
-
-
 
       const myAPIKey = "AIzaSyCuXxCASqoK4NLnmr7J78HIwEZC9CHMk2U";
       const customSearchEngineId = "151cf42b9aa594d6d";
@@ -365,10 +352,6 @@ function Home() {
       clearTimeout(timer);
     };
   }, []);
-
-
-
-
 
   return (
     <div className={styles.container}>
