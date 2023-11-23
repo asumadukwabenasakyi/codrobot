@@ -254,7 +254,7 @@ function Home() {
         if (matchedResponses.length > 0) {
           const botResponse = matchedResponses[0].response;
           for (let i = 0; i < botResponse; i++) {
-            await new Promise((resolve) => setTimeout(resolve, 50));
+            await new Promise((resolve) => setTimeout(resolve, 5));
 
             setChatHistory((prevChatHistory) => [
               ...prevChatHistory,
