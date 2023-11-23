@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { auth } from "../firebaseConfig/firebase";
+import { auth } from "../../../firebase.config";
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import styles from '../../styles/Home.module.css'
+import styles from "../../styles/Home.module.css";
 
 function SignInOrSignUp() {
   const [email, setEmail] = useState("");
@@ -60,8 +60,14 @@ function SignInOrSignUp() {
           <button type="submit">Login</button>
         </form>
 
-        <button onClick={resetPassword} className={styles.resetBtn}>Reset Password</button>
-        {errorMessage && <p className={styles.error}>{`Type your email in the sign in form or the mail provided is not in our database`}</p>}
+        <button onClick={resetPassword} className={styles.resetBtn}>
+          Reset Password
+        </button>
+        {errorMessage && (
+          <p
+            className={styles.error}
+          >{`Type your email in the sign in form or the mail provided is not in our database`}</p>
+        )}
         {resetSuccessMessage && (
           <p className={styles.success}>{resetSuccessMessage}</p>
         )}

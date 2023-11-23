@@ -3,9 +3,7 @@ import styles from "../styles/Home.module.css";
 import CommentIcon from "@mui/icons-material/Comment";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
-import { db } from "../pages/firebaseConfig/firebase";
-import { push, ref } from "firebase/database";
+import { ref } from "firebase/database";
 import { getDatabase, get } from "firebase/database";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Signout from "../pages/components/signout";
@@ -13,7 +11,9 @@ import Linkify from "react-linkify";
 import Image from "next/image";
 import UserIcon from "@mui/icons-material/QuestionAnswer";
 import BotIcon from "@mui/icons-material/SmartToy";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
+
+require('dotenv').config();
 
 function Home() {
   const text = `I am Cod robot, I'm here to assist you`;
@@ -27,12 +27,39 @@ function Home() {
   const [fetchedData, setFetchedData] = useState(null);
   const [showRound, setShowRound] = useState(false);
   const [searchingGoogle, setSearchingGoogle] = useState(false);
+  const [questionDatabase, setQuestionDatabase] = useState("");
+  const [responseDatabase, setResponseDatabase] = useState("");
 
   /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
 
-
-
   /**= =================END=========== =*/
+
+  //FUNCTION TO MAKE PUSH REQUEST TO THE DATABASE
+  // const handleDatabaseSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // Check if both questionDatabase and responseDatabase have values
+  //   if (!questionDatabase || !responseDatabase) {
+  //     console.error("Both question and response are required");
+  //     return;
+  //   }
+
+  //   try {
+  //     // Push the data to the database
+  //     const dbRef = ref(getDatabase(), "questionsAndResponses");
+  //     await push(dbRef, {
+  //       question: questionDatabase,
+  //       response: responseDatabase,
+  //     });
+
+  //     // Clear the input fields after successful submission
+  //     setQuestionDatabase("");
+  //     setResponseDatabase("");
+
+  //   } catch (error) {
+  //     console.error("Error pushing data to the database:", error);
+  //   }
+  // };
 
   /*============FETCHING THE DATA(QUESTIONS AND RESPONSES) FROM THE DB==== */
   useEffect(() => {
@@ -55,12 +82,12 @@ function Home() {
       }
     };
     fetchData();
-
-    const fetchInterval = setInterval(fetchData, 1000);
-
-    return () => clearInterval(fetchInterval);
-  }, []);
+  });
   /**=============END OF FETCHING DATA FROM DB================== */
+
+
+
+
 
   /**==============FUNCTION FOR THE TYPING EFFECT AT THE HEADER======= */
   useEffect(() => {
@@ -70,6 +97,9 @@ function Home() {
     return () => clearInterval(interval);
   }, [text]);
   /**=============END OF THE TYPING EFFECT================ */
+
+
+
 
   /**============FUNCTIONS THAT HANDLES THE SUBMITION OF THE USER QUESTION */
   const handleUserSubmit = (e) => {
@@ -94,6 +124,8 @@ function Home() {
     }
   }, [questionCount]);
 
+
+
   const handleWhatsAppClick = () => {
     const phoneNumber = "+233597063145";
     const isMobileDevice =
@@ -109,6 +141,9 @@ function Home() {
   };
 
   /**===============END OF THE FUNCTION THAT HANDLES THE SUBMISSION ========= */
+
+
+
 
   /**===========FUNCTIONS THAT HELPS IN GENERATION OF THE BOT RESPONSES===== */
   const getBotResponse = async (question) => {
@@ -242,6 +277,9 @@ function Home() {
         }
       }
 
+
+
+
       const myAPIKey = "AIzaSyCuXxCASqoK4NLnmr7J78HIwEZC9CHMk2U";
       const customSearchEngineId = "151cf42b9aa594d6d";
       const response = await fetch(
@@ -316,7 +354,7 @@ function Home() {
     setShowRound(true);
     const timer = setTimeout(() => {
       setShowRound(false);
-    }, 1000);
+    }, 3000);
     return () => {
       clearTimeout(timer);
     };
@@ -324,6 +362,23 @@ function Home() {
 
   return (
     <div className={styles.container}>
+      {/* <div className={styles.pushToDatabase}>
+        <form onSubmit={handleDatabaseSubmit}>
+          <input
+            value={questionDatabase}
+            placeholder="Question to push to database"
+            onChange={(e) => setQuestionDatabase(e.target.value)}
+          />
+          <input
+            value={responseDatabase}
+            placeholder="Response to push database"
+            onChange={(e) => setResponseDatabase(e.target.value)}
+          />
+
+          <button type="submit">Push To Databse</button>
+        </form>
+      </div> */}
+
       {showRound && (
         <div className={styles.loading}>
           <div className={styles.loadingSpinner}></div>
@@ -340,7 +395,6 @@ function Home() {
 
       <div className={styles.chatbotContainer}>
         <div className={styles.chatBotHeader}>
-
           <div className={styles.leftSide}>
             <div className={styles.logoContainer}>
               <Image
@@ -451,7 +505,10 @@ function Home() {
               </div>
             </a>
 
-            <a href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP" download>
+            <a
+              href="https://www.webintoapp.com/download/zip/145269/Cod%20Robot%201.0.zip?9Op922q9oqZP"
+              download
+            >
               <div className={styles.emailIcon}>
                 <DownloadIcon /> APP
               </div>

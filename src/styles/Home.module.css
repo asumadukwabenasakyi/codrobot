@@ -20,17 +20,17 @@
   grid-template-columns: 1fr 3fr;
 }
 
+
 .chatBotHeader {
   width: 45%;
   height: 90px;
-  background-color: #101357;
+  background-color: #35530A;;
   border-radius: 10px;
   position: fixed;
   display: flex;
   align-items: center;
   flex-direction: row;
 }
-
 
 .logoContainer {
   display: flex;
@@ -62,7 +62,7 @@
 .titles h1:nth-child(2) {
   font-size: 12px;
   font-family: sans-serif;
-  color: #e5e5e5;
+  color: #fff;
   font-weight: 100;
   margin-top: 5px;
 }
@@ -76,7 +76,7 @@
 }
 
 .CloseIcon .icon {
-  color: #e5e5e5;
+  color: #fff;
   cursor: pointer;
   margin-right: 10px;
   font-size: 30px;
@@ -85,6 +85,7 @@
 .CloseIcon .icon:hover {
   color: #101357;
 }
+
 
 /* Chat container */
 .chatContainer {
@@ -95,6 +96,7 @@
   border-radius: 8px;
 }
 
+
 /* Chat messages */
 .theChats {
   width: 100%;
@@ -103,9 +105,10 @@
   overflow-y: scroll;
 }
 
+
 /* User question */
 .userQuestion {
-  background-color: #ffff;
+  background-color: #fff;
   color: #101357;
   margin-top: 10px;
   padding: 20px;
@@ -115,6 +118,7 @@
   word-break: break-all;
   letter-spacing: 1px;
 }
+
 
 /* Styles for bot message */
 .botResponse {
@@ -126,11 +130,21 @@
   margin-top: 20px;
   font-weight: 100;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: left;
   word-break: break-all;
   letter-spacing: 1px;
+}
+
+.icon1 {
+  color: red;
+  margin-right: 5px;
+}
+
+.icon2 {
+  color: green;
+  margin-right: 5px;
 }
 
 
@@ -179,7 +193,7 @@
   margin-top: -31%;
   margin-left: 14%;
   border-radius: 20px;
-  background-color: #101357;
+  background-color: #35530A;
 }
 
 .contactIcons {
@@ -431,7 +445,8 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.suggestions{
+
+.suggestions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -447,7 +462,8 @@
 }
 
 .suggestionItem {
-  margin-bottom: 10px; /* Add margin-bottom for spacing */
+  margin-bottom: 10px;
+  /* Add margin-bottom for spacing */
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -458,7 +474,8 @@
   color: #fff;
   width: 100%;
 }
-.resetBtn{
+
+.resetBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -468,12 +485,14 @@
   background-color: antiquewhite;
   font-size: 15px;
 }
-.error{
+
+.error {
   color: red;
   display: flex;
   margin-left: 10px;
 }
-.success{
+
+.success {
   color: green;
   margin-left: 10px;
 }
@@ -497,7 +516,8 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-.please1{
+
+.please1 {
   font-size: 14px;
   color: #fff;
 }
@@ -526,7 +546,8 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-.pleaseGoogle{
+
+.pleaseGoogle {
   font-size: 14px;
   color: #101357;
 }
@@ -536,8 +557,9 @@
     transform: rotate(360deg);
   }
 }
+
 /*play icon*/
-.playIcon{
+.playIcon {
   color: yellow;
 }
 
@@ -546,14 +568,14 @@
 
 .disabledButton {
   background-color: #e5e5e5;
-  color: red; 
+  color: red;
   cursor: not-allowed;
   border: 1px solid #e5e5e5;
   outline: none;
 }
 
 /*============SHOW WELCOME MESSAGE STYLES ==============*/
-.showWelcomeMessageContainer{
+.showWelcomeMessageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -561,38 +583,40 @@
   background-color: #101357;
   max-width: 350px;
   min-height: 150px;
-  margin: -100% auto;
+  margin: -25% auto;
   padding: 5px;
   border-radius: 5px;
 }
+
 .welcomeMessage {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 15px;
 }
-.welcomeMessage h1{
-font-size: 15px;
-color: #fff;
-font-weight: 100;
+
+.welcomeMessage h1 {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 100;
 }
 
-.closeWelcomeMessage{
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: #fff;
+.closeWelcomeMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
 }
 
-.closeWelcomeMessage button{
-  padding:7px;
+.closeWelcomeMessage button {
+  padding: 7px;
   color: #101357;
   font-weight: 600;
 }
 
 
 /*RESPONSIVE FOR MOBILE PHONES ===================*/
-@media (max-width: 574px) {
+@media (max-width: 700px) {
   .chatbotContainer {
     width: 100%;
     height: auto;
@@ -608,7 +632,7 @@ background-color: #fff;
   .chatBotHeader {
     width: 100%;
     height: auto;
-    background-color: #101357;
+    background-color: #35530A;;
     border-radius: 0;
   }
 
@@ -634,9 +658,10 @@ background-color: #fff;
     font-size: 12px;
     margin-top: 2px;
   }
-.rightSide{
-  margin-right: -15px;
-}
+
+  .rightSide {
+    margin-right: -15px;
+  }
 
   .CloseIcon .icon {
     font-size: 25px;
@@ -713,21 +738,24 @@ background-color: #fff;
   .whatsAppIcon {
     margin-top: 0;
   }
-.emailIcon{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  font-weight: 600;
-}
+
+  .emailIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
   /*==============STYLES FOR FEEDBACK BOX===============*/
   .feedbackPopup {
-    width: 300px;
+    width: 270px;
+    padding: 10px;
     height: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: -70% auto;
+    margin: -115% auto;
   }
 
   .feedbackPopup h1 {
@@ -785,11 +813,12 @@ background-color: #fff;
     justify-content: flex-start;
   }
 
-  .icon1{
+  .icon1 {
     color: red;
     margin-right: 5px;
   }
-  .icon2{
+
+  .icon2 {
     color: green;
     margin-right: 5px;
   }
@@ -799,26 +828,30 @@ background-color: #fff;
     color: #e5e5e5;
     font-size: 13px;
   }
-  .signInHeader h1{
+
+  .signInHeader h1 {
     color: #000;
   }
-  .signInForm h1{
+
+  .signInForm h1 {
     font-size: 13px;
     color: #000;
   }
-  
-  .signInForm{
+
+  .signInForm {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+
   .signInForm form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
   }
+
   .resetBtn {
     margin-top: 10px;
     width: auto;
@@ -827,14 +860,15 @@ background-color: #fff;
     align-items: center;
   }
 
-  .signInForm form input{
+  .signInForm form input {
     height: 6vh;
   }
 
 
-  
+
   /*==============SHOW WELCOME MESSAGE ==============*/
-  .showWelcomeMessageContainer{
+  .showWelcomeMessageContainer {
     max-width: 300px;
+    margin-top: -100%
   }
 }

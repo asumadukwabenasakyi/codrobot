@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../firebaseConfig/firebase';
+import { auth } from '../../../firebase.config';
 function Logout() {
   const handleLogout = async () => {
     try {

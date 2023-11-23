@@ -1,9 +1,12 @@
+require('dotenv').config();
 import { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import styles from '../styles/user.module.css'
 import SignUp from './components/signup'
 import SignIn from './components/signIn'
-import { auth } from '../pages/firebaseConfig/firebase';
+import { auth } from '../../firebase.config';
+
+
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);

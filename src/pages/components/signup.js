@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { auth } from '../firebaseConfig/firebase';
+import { auth } from '../../../firebase.config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import styles from '../../styles/Home.module.css';
 
