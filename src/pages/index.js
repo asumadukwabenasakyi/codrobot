@@ -259,7 +259,7 @@ function Home() {
             setChatHistory((prevChatHistory) => [
               ...prevChatHistory,
               {
-                question: botResponse.slice(0, i + 1),
+                question: botResponse.slice(0, i),
                 isUser: false,
               },
             ]);
