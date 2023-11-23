@@ -29,38 +29,7 @@ function Home() {
   const [searchingGoogle, setSearchingGoogle] = useState(false);
   const [questionDatabase, setQuestionDatabase] = useState("");
   const [responseDatabase, setResponseDatabase] = useState("");
-  const [showBotResponseLetters, setShowBotResponseLetters] = useState(0);
-
-// Add a new state to keep track  bot response being displayed
-const [currentBotResponseIndex, setCurrentBotResponseIndex] = useState(0);
-
-// Add a new state to keep track of whether the bot is currently typing
-const [botIsTyping, setBotIsTyping] = useState(false);
-
-const handleBotResponse = (response) => {
-  setBotIsTyping(true);
-
-  // Start showing letters gradually
-  const interval = setInterval(() => {
-    setShowBotResponseLetters((prev) => (prev + 1) % response.length);
-  }, 100);
-
-  // After some time, stop typing and move to the next response
-  setTimeout(() => {
-    clearInterval(interval);
-    setBotIsTyping(false);
-
-    // Move to the next response or reset if all responses are shown
-    setCurrentBotResponseIndex((prev) => (prev + 1) % chatHistory.length);
-  }, 2000); // Adjust the duration as needed
-
-  // Add the bot response to chatHistory
-  setChatHistory((prevChatHistory) => [
-    ...prevChatHistory,
-    { question: response, isUser: false },
-  ]);
-};
-
+  
 
   /**= ==========FUNCTION TO DOWNLOAD THE ANDRIOD APPLICATION=========== =*/
 
@@ -295,17 +264,24 @@ const handleBotResponse = (response) => {
 
         // If there is a matched response, use it as the bot's response
         if (matchedResponses.length > 0) {
-          handleBotResponse(matchedResponses[0].response);
+          // Instead of adding the response immediately, add each character with a delay
+          const botResponse = matchedResponses[0].response;
+          for (let i = 0; i < botResponse.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 50)); // Adjust the delay as needed
+            setChatHistory(prevChatHistory => [
+              ...prevChatHistory,
+              { question: botResponse.slice(0, i + 1), isUser: false },
+            ]);
+          }
           return; // Exit the function early if a matched response is found
         } else {
           setSearchingGoogle(true);
-
           setTimeout(() => {
             setSearchingGoogle(false);
-            handleBotResponse("I'm sorry, I couldn't find an answer.")
           }, 2000);
         }
       }
+  
 
 
 
@@ -378,30 +354,6 @@ const handleBotResponse = (response) => {
     }
   };
 
-  useEffect(() => {
-    // Check if the bot is typing and there are bot responses to show
-    if (botIsTyping && chatHistory.length > 0) {
-      // Get the current bot response
-      const currentResponse = chatHistory[currentBotResponseIndex].question;
-  
-      // Start showing letters gradually
-      const interval = setInterval(() => {
-        setShowBotResponseLetters((prev) => (prev + 1) % currentResponse.length);
-      }, 100);
-  
-      // After some time, stop typing and move to the next response
-      setTimeout(() => {
-        clearInterval(interval);
-        setBotIsTyping(false);
-  
-        // Move to the next response or reset if all responses are shown
-        setCurrentBotResponseIndex(
-          (prev) => (prev + 1) % chatHistory.length
-        );
-      }, 2000); // Adjust the duration as needed
-    }
-  }, [botIsTyping, chatHistory, currentBotResponseIndex]);
-  
   /**===================END OF THE FUNCTION THAT HELPS IN GENERATING RESPONSE */
 
   useEffect(() => {
